@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDI Predictor - Visualizations</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#0f1117; color:#eee; min-height:100vh; }
+    nav { background:#1a1d2e; padding:15px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #3498db; }
+    nav h1 { color:#3498db; font-size:1.4rem; }
+    nav a { color:#aaa; text-decoration:none; margin-left:20px; }
+    nav a:hover { color:#3498db; }
+    .container { max-width:900px; margin:50px auto; padding:0 20px; }
+    h2 { color:#3498db; font-size:1.8rem; margin-bottom:8px; }
+    .subtitle { color:#888; margin-bottom:35px; }
+    .plot-card { background:#1a1d2e; border-radius:14px; padding:25px; margin-bottom:28px; border:1px solid #2c2f45; }
+    .plot-card h3 { color:#bbb; margin-bottom:16px; font-size:1.1rem; }
+    .plot-card img { width:100%; border-radius:8px; }
+    footer { text-align:center; padding:30px; color:#555; font-size:0.85rem; margin-top:40px; border-top:1px solid #2c2f45; }
+  </style>
+</head>
+<body>
+<nav>
+  <h1>🌍 HDI Predictor</h1>
+  <div>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/visualizations">Visualizations</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>📊 Data Visualizations</h2>
+  <p class="subtitle">Exploratory Data Analysis of the HDI dataset</p>
+
+  <div class="plot-card">
+    <h3>🔥 Correlation Heatmap</h3>
+    <img src="/static/plots/heatmap.png" alt="Correlation Heatmap">
+  </div>
+
+  <div class="plot-card">
+    <h3>📈 Life Expectancy vs HDI Score</h3>
+    <img src="/static/plots/scatter.png" alt="Scatter Plot">
+  </div>
+
+  <div class="plot-card">
+    <h3>📉 HDI Score Distribution</h3>
+    <img src="/static/plots/distribution.png" alt="Distribution Plot">
+  </div>
+</div>
+
+<footer>HDI Predictor | AITS Tirupati | EEE Department</footer>
+</body>
+</html>

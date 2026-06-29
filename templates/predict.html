@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDI Predictor - Predict</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#0f1117; color:#eee; min-height:100vh; }
+    nav { background:#1a1d2e; padding:15px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #3498db; }
+    nav h1 { color:#3498db; font-size:1.4rem; }
+    nav a { color:#aaa; text-decoration:none; margin-left:20px; }
+    nav a:hover { color:#3498db; }
+    .container { max-width:700px; margin:50px auto; padding:0 20px; }
+    h2 { color:#3498db; font-size:1.8rem; margin-bottom:8px; }
+    .subtitle { color:#888; margin-bottom:30px; }
+    .form-box { background:#1a1d2e; border-radius:14px; padding:35px; border:1px solid #2c2f45; }
+    .form-group { margin-bottom:22px; }
+    label { display:block; color:#bbb; margin-bottom:8px; font-size:0.95rem; }
+    input[type=number] { width:100%; padding:12px 16px; background:#0f1117; border:1px solid #3c3f55; border-radius:8px; color:#eee; font-size:1rem; outline:none; transition:0.2s; }
+    input[type=number]:focus { border-color:#3498db; }
+    .hint { font-size:0.8rem; color:#555; margin-top:5px; }
+    button { width:100%; padding:14px; background:#3498db; color:#fff; border:none; border-radius:8px; font-size:1rem; font-weight:600; cursor:pointer; transition:0.3s; }
+    button:hover { background:#2980b9; transform:translateY(-1px); }
+
+    .result-box { background:#1a1d2e; border-radius:14px; padding:35px; margin-top:30px; border:2px solid; text-align:center; }
+    .score-big { font-size:4rem; font-weight:800; margin:10px 0; }
+    .category-badge { display:inline-block; padding:10px 28px; border-radius:25px; font-size:1.1rem; font-weight:700; margin:10px 0 20px; }
+    .inputs-summary { background:#0f1117; border-radius:10px; padding:18px; text-align:left; display:flex; gap:20px; flex-wrap:wrap; justify-content:center; }
+    .inp-item { text-align:center; }
+    .inp-item .val { font-size:1.2rem; font-weight:700; color:#3498db; }
+    .inp-item .lbl { font-size:0.78rem; color:#777; margin-top:3px; }
+
+    .error-box { background:#2c1515; border:1px solid #e74c3c; border-radius:10px; padding:20px; margin-top:20px; color:#e74c3c; text-align:center; }
+    footer { text-align:center; padding:30px; color:#555; font-size:0.85rem; margin-top:40px; border-top:1px solid #2c2f45; }
+  </style>
+</head>
+<body>
+<nav>
+  <h1>🌍 HDI Predictor</h1>
+  <div>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/visualizations">Visualizations</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>🔍 Predict HDI Score</h2>
+  <p class="subtitle">Enter country indicators to get the Human Development Index prediction</p>
+
+  <div class="form-box">
+    <form method="POST" action="/predict">
+      <div class="form-group">
+        <label>❤️ Life Expectancy (years)</label>
+        <input type="number" name="life_expectancy" placeholder="e.g. 72.5" step="0.1" min="1" max="100" required
+               value="{{ result.life_exp if result and not result.get('error') else '' }}">
+        <div class="hint">Range: 20 – 85 years</div>
+      </div>
+      <div class="form-group">
+        <label>📚 Mean Years of Schooling</label>
+        <input type="number" name="schooling" placeholder="e.g. 13.2" step="0.1" min="0" max="20" required
+               value="{{ result.schooling if result and not result.get('error') else '' }}">
+        <div class="hint">Range: 0 – 20 years</div>
+      </div>
+      <div class="form-group">
+        <label>💰 GNI Per Capita (USD PPP)</label>
+        <input type="number" name="gni" placeholder="e.g. 15000" step="100" min="100" max="150000" required
+               value="{{ result.gni if result and not result.get('error') else '' }}">
+        <div class="hint">Range: $1,000 – $80,000</div>
+      </div>
+      <button type="submit">⚡ Predict HDI</button>
+    </form>
+  </div>
+
+  {% if result %}
+    {% if result.get('error') %}
+      <div class="error-box">❌ Error: {{ result.error }}</div>
+    {% else %}
+      <div class="result-box" style="border-color:{{ result.color }};">
+        <p style="color:#aaa; font-size:1rem;">Predicted HDI Score</p>
+        <div class="score-big" style="color:{{ result.color }};">{{ result.score }}</div>
+        <div class="category-badge" style="background:{{ result.color }}22; color:{{ result.color }}; border:2px solid {{ result.color }};">
+          {{ result.icon }} {{ result.category }} Human Development
+        </div>
+        <div class="inputs-summary">
+          <div class="inp-item">
+            <div class="val">{{ result.life_exp }}</div>
+            <div class="lbl">Life Expectancy (yrs)</div>
+          </div>
+          <div class="inp-item">
+            <div class="val">{{ result.schooling }}</div>
+            <div class="lbl">Years of Schooling</div>
+          </div>
+          <div class="inp-item">
+            <div class="val">${{ "{:,}".format(result.gni|int) }}</div>
+            <div class="lbl">GNI Per Capita</div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+</div>
+
+<footer>HDI Predictor | AITS Tirupati | EEE Department</footer>
+</body>
+</html>

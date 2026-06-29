@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HDI Predictor</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Segoe UI',sans-serif; background:#0f1117; color:#eee; min-height:100vh; }
+    nav { background:#1a1d2e; padding:15px 40px; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #3498db; }
+    nav h1 { color:#3498db; font-size:1.4rem; }
+    nav a { color:#aaa; text-decoration:none; margin-left:20px; font-size:0.95rem; }
+    nav a:hover { color:#3498db; }
+    .hero { text-align:center; padding:80px 20px 60px; }
+    .hero h2 { font-size:2.5rem; color:#3498db; margin-bottom:15px; }
+    .hero p { font-size:1.1rem; color:#aaa; max-width:600px; margin:0 auto 35px; line-height:1.7; }
+    .btn { display:inline-block; background:#3498db; color:#fff; padding:14px 36px; border-radius:8px; text-decoration:none; font-size:1rem; font-weight:600; margin:8px; transition:0.3s; }
+    .btn:hover { background:#2980b9; transform:translateY(-2px); }
+    .btn-outline { background:transparent; border:2px solid #3498db; color:#3498db; }
+    .btn-outline:hover { background:#3498db; color:#fff; }
+    .cards { display:flex; justify-content:center; flex-wrap:wrap; gap:24px; padding:40px 20px; max-width:1000px; margin:0 auto; }
+    .card { background:#1a1d2e; border-radius:12px; padding:28px; width:220px; text-align:center; border:1px solid #2c2f45; }
+    .card .icon { font-size:2.5rem; margin-bottom:12px; }
+    .card h3 { color:#3498db; margin-bottom:8px; }
+    .card p { color:#999; font-size:0.88rem; line-height:1.5; }
+    .tiers { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; padding:20px; }
+    .tier { padding:10px 22px; border-radius:20px; font-weight:600; font-size:0.9rem; }
+    footer { text-align:center; padding:30px; color:#555; font-size:0.85rem; border-top:1px solid #2c2f45; margin-top:40px; }
+  </style>
+</head>
+<body>
+<nav>
+  <h1>🌍 HDI Predictor</h1>
+  <div>
+    <a href="/">Home</a>
+    <a href="/predict">Predict</a>
+    <a href="/visualizations">Visualizations</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h2>Human Development Index Predictor</h2>
+  <p>Predict the Human Development Index of any country using Life Expectancy, Education, and Income indicators powered by Machine Learning.</p>
+  <a href="/predict" class="btn">🔍 Start Predicting</a>
+  <a href="/visualizations" class="btn btn-outline">📊 View Analysis</a>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <div class="icon">❤️</div>
+    <h3>Life Expectancy</h3>
+    <p>Average number of years a person is expected to live</p>
+  </div>
+  <div class="card">
+    <div class="icon">📚</div>
+    <h3>Education</h3>
+    <p>Mean years of schooling in the country</p>
+  </div>
+  <div class="card">
+    <div class="icon">💰</div>
+    <h3>GNI Per Capita</h3>
+    <p>Gross National Income per person (USD PPP)</p>
+  </div>
+  <div class="card">
+    <div class="icon">🤖</div>
+    <h3>ML Prediction</h3>
+    <p>Linear Regression model with 97% accuracy</p>
+  </div>
+</div>
+
+<div style="text-align:center; padding:10px;">
+  <h3 style="color:#aaa; margin-bottom:16px;">HDI Classification Tiers</h3>
+  <div class="tiers">
+    <div class="tier" style="background:#27ae6033; color:#27ae60; border:1px solid #27ae60;">🌟 Very High ≥ 0.800</div>
+    <div class="tier" style="background:#2980b933; color:#2980b9; border:1px solid #2980b9;">✅ High ≥ 0.700</div>
+    <div class="tier" style="background:#f39c1233; color:#f39c12; border:1px solid #f39c12;">⚠️ Medium ≥ 0.550</div>
+    <div class="tier" style="background:#e74c3c33; color:#e74c3c; border:1px solid #e74c3c;">❗ Low &lt; 0.550</div>
+  </div>
+</div>
+
+<footer>
+  <p>HDI Predictor | Team: Potti Gowtham, V S Akhil Roy, Patra Abhilash, Madikiri Sahana, Sareddy Pranay Kumar Reddy</p>
+  <p style="margin-top:6px;">AITS Tirupati | EEE Department | 2025</p>
+</footer>
+</body>
+</html>
